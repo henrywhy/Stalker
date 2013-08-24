@@ -23,14 +23,15 @@ I am a student from Hohai University in Nanjing, China.
 
 
 Thanks:
-
+=======
       <<Orang's 一个操作系统的实现>> 于渊 著
       <<30天自制操作系统>> 川合秀实 著
       <<x86汇编语言-从实模式到保护模式>> 李忠 等 著
       intel comporation
       ...
+================================================================================================
 
-
+	
 	by  Henry Wang(王鸿缘)
 
 
