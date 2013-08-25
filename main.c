@@ -14,10 +14,10 @@ void StalkerMain()
 	}
 	
 	//在8行16列的空间里画A
-	paintA(70, 70);
-	paintA(0, 0);
+	//paintA(70, 70);
+	//paintA(0, 0);
 	
-	paintMouse(100, 100);
+	//paintMouse(100, 100);
 }
 
 

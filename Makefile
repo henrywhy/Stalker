@@ -1,9 +1,9 @@
 #生成软盘镜像文件boot.img
-boot.img: boot.asm kernel.bin loader.bin
+boot.img: boot.asm kernel.bin loader.bin isr.bin
 	nasm -o boot.img boot.asm
 	sudo mkdir /mnt/floppyStalkerOS/
 	sudo mount -o loop boot.img /mnt/floppyStalkerOS/
-	sudo cp loader.bin kernel.bin /mnt/floppyStalkerOS/
+	sudo cp loader.bin kernel.bin isr.bin /mnt/floppyStalkerOS/
 	sleep 1
 	sudo umount /mnt/floppyStalkerOS/
 	sudo rmdir /mnt/floppyStalkerOS/
@@ -15,6 +15,18 @@ kernel.bin: kernel.o main.o setPixel.o paintChars.o
 #loader.bin	
 loader.bin:	loader.asm
 	nasm -o loader.bin loader.asm
+	
+#isr.bin
+isr.bin: isr.o isrc.o setPixel.o paintChars.o
+	ld -o isr.bin isr.o isrc.o  setPixel.o paintChars.o
+	
+#isr.o
+isr.o: isr.asm
+	nasm -f elf -o isr.o isr.asm
+	
+#isrc.o
+isrc.o: isrc.c
+	gcc -c -o isrc.o isrc.c
 	
 #生成kernel.o ELF目标文件
 kernel.o: kernel.asm
