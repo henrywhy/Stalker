@@ -46,4 +46,4 @@ paintChars.o: paint/paintChars.c
 	
 #工程构建完成后删除中间不需要的文件
 clean:
-	rm kernel.bin loader.bin *.o
+	rm *.bin *.o
