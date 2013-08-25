@@ -1,5 +1,17 @@
 #include "../include/paint.h"
 
+void paintNothing(int a, int b)
+{
+	int x, y;
+	for(x=0; x<8; x++)
+	{
+		for(y=0; y<16; y++)
+		{			
+			setPixel(x+a, y+b, 2);
+		}
+	}
+}
+
 void paintA(int a, int b)
 {
 	int x, y;
@@ -26,6 +38,29 @@ void paintA(int a, int b)
 		}
 	}
 }
+
+
+void paintE(int a, int b)
+{
+	int x, y;
+	for(x=0; x<8; x++)
+	{
+		for(y=0; y<16; y++)
+		{
+			if(x==0 || x==1 || y==0 || y==1)
+			{
+				setPixel(x+a, y+b, 15);
+			} else if(y==14 || y==15)
+			{
+				setPixel(x+a, y+b, 15);
+			} else if(y==7 || y==8)
+			{
+				setPixel(x+a, y+b, 15);
+			}
+		}
+	}
+}
+
 
 void paintMouse(int a, int b)
 {

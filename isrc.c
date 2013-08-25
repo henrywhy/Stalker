@@ -1,22 +1,19 @@
 #include "include/paint.h"
 
-void delay();
+ void delay();
 
-void isrc()
+void isrc(int scanCode)
 {
 	int x, y;
-	
-	paintA(50, 50);
-	
-	delay();
-	//先铺上背景
-	for(x=0; x<=319; x++)
+
+	paintNothing(50, 50);
+	if(scanCode==0x1e || scanCode==0x9e)
 	{
-		for(y=0; y<=199; y++)
-		{			
-			setPixel(x, y, 2);
-		}
-	}
+		paintA(50, 50);
+	} else if(scanCode==0x12 || scanCode==0x92)
+	{
+		paintE(50, 50);
+	} 
 }
 
 void delay()
