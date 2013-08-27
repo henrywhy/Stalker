@@ -266,7 +266,7 @@ Label_Goto_Protect:
 	mov dword [bx+si], 0x00439804 
 	add si, 4
 
-	;2#描述符,数据段描述符，线性基地址0x000b8000,长度为32k，末尾地址为0x000bffff，可读可写，特权等级为0
+	;2#描述符,特殊数据段描述符，线性基地址0x000b8000,长度为32k，末尾地址为0x000bffff，可读可写，特权等级为0
 	;文本模式下彩色视频缓冲区
 	mov dword [bx+si], 0x80007fff
 	add si, 4
@@ -279,7 +279,7 @@ Label_Goto_Protect:
 	mov dword [bx+si], 0x00409610
 	add si, 4
 
-	;4#描述符,数据段描述符，线性基地址0x000a0000,长度为64k，末尾地址为0x000affff，可读可写，特权等级为0
+	;4#描述符,特殊数据段描述符，线性基地址0x000a0000,长度为64k，末尾地址为0x000affff，可读可写，特权等级为0
 	;图形模式下视频缓冲区
 	mov dword [bx+si], 0x0000ffff
 	add si, 4
@@ -292,11 +292,18 @@ Label_Goto_Protect:
 	mov dword [bx+si], 0x00409808
 	add si, 4
 	
+	;6#描述符,全局数据段描述符，线性基地址0x00200000,长度为1M，末尾地址为0x002fffff，可读可写，特权等级为0
+	mov dword [bx+si], 0x0000ffff
+	add si, 4
+	mov dword [bx+si], 0x004f9220
+	add si, 4
+	
+	
 	;重新添加描述符的时候，要注意修改gdtr中的段限
 	;加载GDTR
 	mov ax, bx
 	add ax, si
-	mov word [bx+si], 47		;gdtr中低16位的表的界限
+	mov word [bx+si], 55		;gdtr中低16位的表的界限
 	add si, 2
 	mov dword [bx+si], BaseOfGDT*16+OffsetOfGDT	;gdtr中高32位的gdtr线性地址的基地址
 	mov bx, ax
@@ -311,12 +318,20 @@ Label_Goto_Protect:
 	
 	;中断门描述符表， 暂时将描述符初始化为同一值
 Label_Load_GateDescriptor:	
-	mov dword [bx+si], 0x00280080			;选择子为0x0028指向中断服务子程序
+	mov dword [bx+si], 0x002800a0			;选择子为0x0028指向中断服务子程序
 	add si, 4
 	mov dword [bx+si], 0x00008e00
 	add si, 4
 	cmp si, 256*8
 	jne Label_Load_GateDescriptor
+	
+	;单独修改鼠标中断描述符的中断例程的地址
+	mov ax, si
+	mov si, 44*8			;鼠标中断是40号
+	mov dword [bx+si], 0x002800b4
+	add si, 4
+	mov dword [bx+si], 0x00008e00
+	mov si, ax
 	
 	;加载IDTR
 	mov ax, bx
@@ -326,6 +341,7 @@ Label_Load_GateDescriptor:
 	mov dword [bx+si], BaseOfIDT*16+OffsetOfIDT	;gdtr中高32位的gdtr线性地址的基地址
 	mov bx, ax
 	lidt [bx]			;将48位数据拷贝到idtr中
+	
 	
 	
 	;关中断

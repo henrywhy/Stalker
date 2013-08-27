@@ -18,7 +18,7 @@ loader.bin:	loader.asm
 	
 #isr.bin
 isr.bin: isr.o isrc.o setPixel.o paintChars.o
-	ld -o isr.bin isr.o isrc.o  setPixel.o paintChars.o
+	ld -Tdata 0x0 -o isr.bin isr.o isrc.o  setPixel.o paintChars.o
 	
 #isr.o
 isr.o: isr.asm
@@ -37,8 +37,8 @@ main.o: main.c
 	gcc -c -o main.o main.c
 	
 #生成setPixel.o ELF目标文件
-setPixel.o: paint/setPixel.c
-	gcc -c -o setPixel.o paint/setPixel.c
+setPixel.o: paint/setPixel.asm
+	nasm -f elf -o setPixel.o paint/setPixel.asm
 	
 #生成paintChars.o ELF目标文件
 paintChars.o: paint/paintChars.c

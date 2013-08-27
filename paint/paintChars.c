@@ -65,14 +65,14 @@ void paintE(int a, int b)
 void paintMouse(int a, int b)
 {
 	int x, y;
-	for(x=0; x<12; x++)
+	for(x=0; x<8; x++)
 	{
-		for(y=0; y<12; y++)
+		for(y=0; y<16; y++)
 		{
-			if(x+y<12)
+			if(x+y<8)
 			{
 				setPixel(x+a, y+b, 15);
-			} else if(x-y<=4 && x-y>=-4)
+			} else if(x-y<=1 && x-y>=-1)
 			{
 				setPixel(x+a, y+b, 15);
 			}
