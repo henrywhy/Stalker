@@ -8,6 +8,8 @@ This is my own operating system project, called "Stalker OS".
 I am a student from Hohai University in Nanjing, China.
 
 ===============================================================================================
+![Screenshot](/screenshot/psb.gif)
+===============================================================================================
       You can run Stalker like this:
 
             step 0:
