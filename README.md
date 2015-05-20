@@ -6,6 +6,8 @@ OS Dev Website
 
 http://wiki.osdev.org/Main_Page
 
+http://wiki.0xffffff.org/
+
 http://skelix.net
 
 Multiboot Specification
