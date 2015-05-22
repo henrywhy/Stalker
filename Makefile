@@ -7,8 +7,8 @@ stalker.iso: kernel.bin
 	rm -rf isodir
 
 #create Stalker OS Kernel
-kernel.bin: kernel.o boot.o scripts/link.lds
-	ld kernel.o boot.o -T scripts/link.lds -o kernel.bin -m elf_i386
+kernel.bin: kernel.o boot.o convert.o print.o scripts/link.lds
+	ld kernel.o boot.o convert.o print.o -T scripts/link.lds -o kernel.bin -m elf_i386
 
 #generate boot obj
 boot.o: boot/boot.S
@@ -17,6 +17,13 @@ boot.o: boot/boot.S
 #compile kernel
 kernel.o: kernel/kernel.c
 	gcc -Iinclude -nostdlib -fno-builtin  -Wall -c kernel/kernel.c -m32
+
+#standard library about some print functions
+print.o: lib/print.c
+	gcc -Iinclude -nostdlib -fno-builtin  -Wall -c lib/print.c -m32
+
+convert.o: lib/convert.c 
+	gcc -Iinclude -nostdlib -fno-builtin  -Wall -c lib/convert.c -m32
 
 clean:
 	rm *.o *.bin *.iso
