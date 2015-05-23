@@ -22,16 +22,6 @@
 /* Check if the bit BIT in FLAGS is set.  */
 #define CHECK_FLAG(flags,bit)	((flags) & (1 << (bit)))
 
-/* Some screen stuff.  */
-/* The number of columns.  */
-#define COLUMNS			80
-/* The number of lines.  */
-#define LINES			24
-/* The attribute of an character.  */
-#define ATTRIBUTE		7
-/* The video memory address.  */
-#define VIDEO			0xB8000
-
 
 /* Forward declarations.  */
 void cmain (unsigned long magic, unsigned long addr);
