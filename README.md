@@ -25,3 +25,7 @@ http://www.dedoimedo.com/computers/grub-2.html
 Learn Linux C
 
 http://c.learncodethehardway.org/book/index.html
+
+Makefile tutorial
+
+http://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/
