@@ -29,3 +29,5 @@ http://c.learncodethehardway.org/book/index.html
 Makefile tutorial
 
 http://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/
+
+http://www.ruanyifeng.com/blog/2015/02/make.html
