@@ -21,3 +21,7 @@ GRUB Tutorial :) may be the best grub tutorial
 http://www.dedoimedo.com/computers/grub.html
 
 http://www.dedoimedo.com/computers/grub-2.html
+
+Learn Linux C
+
+http://c.learncodethehardway.org/book/index.html
