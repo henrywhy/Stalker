@@ -27,3 +27,10 @@ convert.o: lib/convert.c
 
 clean:
 	rm *.o *.bin *.iso
+
+run:
+	qemu-system-i386 -cdrom stalker.iso
+
+#-s start port 1234, -S waiting for gdb
+debug:
+	qemu-system-i386 -s -S -kernel kernel.bin

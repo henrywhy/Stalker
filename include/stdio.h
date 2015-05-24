@@ -10,12 +10,12 @@
 
 /* Variables.  */
 /* Point to the video memory.  */
-static volatile unsigned char *video;
+volatile unsigned char *video;
 
 /* Save the X position.  */
-static int xpos;
+int xpos;
 /* Save the Y position.  */
-static int ypos;
+int ypos;
 
 /* Put the character C on the screen.  */
 void putchar (int c);
