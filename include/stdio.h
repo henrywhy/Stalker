@@ -17,6 +17,8 @@ int xpos;
 /* Save the Y position.  */
 int ypos;
 
+void cls (void);
+
 /* Put the character C on the screen.  */
 void putchar (int c);
 

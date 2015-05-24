@@ -1,6 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/* Clear the screen and initialize VIDEO, XPOS and YPOS.  */
+void cls (void)
+{
+  int i;
+
+  video = (unsigned char *) VIDEO;
+  
+  for (i = 0; i < COLUMNS * LINES * 2; i++)
+    *(video + i) = 0;
+
+  xpos = 0;
+  ypos = 0;
+}
+
+
 /* Put the character C on the screen.  */
 void putchar (int c)
 {

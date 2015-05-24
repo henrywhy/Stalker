@@ -23,10 +23,6 @@
 #define CHECK_FLAG(flags,bit)	((flags) & (1 << (bit)))
 
 
-/* Forward declarations.  */
-void cmain (unsigned long magic, unsigned long addr);
-static void cls (void);
-
 /* Check if MAGIC is valid and print the Multiboot information structure
    pointed by ADDR.  */
 void
@@ -132,17 +128,3 @@ cmain (unsigned long magic, unsigned long addr)
     }
 }    
 
-/* Clear the screen and initialize VIDEO, XPOS and YPOS.  */
-static void
-cls (void)
-{
-  int i;
-
-  video = (unsigned char *) VIDEO;
-  
-  for (i = 0; i < COLUMNS * LINES * 2; i++)
-    *(video + i) = 0;
-
-  xpos = 0;
-  ypos = 0;
-}
