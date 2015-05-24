@@ -1,3 +1,6 @@
+CFLAGS=-Iinclude -nostdlib -fno-builtin -Wall -m32
+QEMU=qemu-system-i386
+
 #create bootable iso image
 stalker.iso: kernel.bin
 	mkdir -p isodir/boot/grub
@@ -12,25 +15,25 @@ kernel.bin: kernel.o boot.o convert.o print.o scripts/link.lds
 
 #generate boot obj
 boot.o: boot/boot.S
-	gcc -Iinclude -nostdlib -fno-builtin  -Wall -c boot/boot.S -m32
+	gcc -c boot/boot.S $(CFLAGS)
 
 #compile kernel
 kernel.o: kernel/kernel.c
-	gcc -Iinclude -nostdlib -fno-builtin  -Wall -c kernel/kernel.c -m32
+	gcc -c kernel/kernel.c $(CFLAGS)
 
 #standard library about some print functions
 print.o: lib/print.c
-	gcc -Iinclude -nostdlib -fno-builtin  -Wall -c lib/print.c -m32
+	gcc -c lib/print.c $(CFLAGS)
 
 convert.o: lib/convert.c 
-	gcc -Iinclude -nostdlib -fno-builtin  -Wall -c lib/convert.c -m32
+	gcc -c lib/convert.c $(CFLAGS)
 
 clean:
 	rm *.o *.bin *.iso
 
 run:
-	qemu-system-i386 -cdrom stalker.iso
+	$(QEMU) -cdrom stalker.iso
 
 #-s start port 1234, -S waiting for gdb
 debug:
-	qemu-system-i386 -s -S -kernel kernel.bin
+	$(QEMU) -s -S -kernel kernel.bin
