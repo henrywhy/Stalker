@@ -28,11 +28,17 @@
 void
 cmain (unsigned long magic, unsigned long addr)
 {
-  multiboot_info_t *mbi;
+  //multiboot_info_t *mbi;
   
   /* Clear the screen.  */
-  cls ();
-  printf("hello world");
+	cls ();
+	printf("hello world");
+
+	int i=0;
+	while(i<30) {
+		printf("%d\n", i);
+		i++;
+	}
   
   /* Am I booted by a Multiboot-compliant boot loader?  */
   /*if (magic != MULTIBOOT_BOOTLOADER_MAGIC)
